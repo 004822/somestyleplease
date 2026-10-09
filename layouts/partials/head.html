@@ -18,6 +18,11 @@
   {{ template "_internal/twitter_cards.html" . }}
   {{ template "_internal/schema.html" . }}
 
+  {{ if .Params.canonical }}
+    <link rel="canonical" href="{{ .Params.canonical | absURL }}">
+  {{ else if .IsPage }}
+    <link rel="canonical" href="{{ .Permalink }}">
+  {{ end }}
 
   {{ with .Site.Params.theme_config.favicon }}
     <link rel="icon" href="{{ . | relURL }}">
